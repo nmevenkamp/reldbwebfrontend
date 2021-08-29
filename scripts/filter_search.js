@@ -1,34 +1,34 @@
 function showFilterSearch(entity) {
     div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "block";
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        a[i].style.display = "block";
+    entries = div.getElementsByClassName("filter-search-entry");
+    for (entry of entries) {
+        entry.style.display = "block";
     }
-    filterFunction(entity);
+    updateFilterSearch(entity);
 }
 
 function hideFilterSearch(entity) {
     div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "none";
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        a[i].style.display = "none";
+    entries = div.getElementsByClassName("filter-search-entry");
+    for (entry of entries) {
+        entry.style.display = "none";
     }
 }
 
 function updateFilterSearch(entity) {
-    var input, filter, a, i;
     input = document.getElementById(entity + ".filter-search.input");
     filter = input.value.toUpperCase();
     div = document.getElementById(entity + ".filter-search.list");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
+    entries = div.getElementsByClassName("filter-search-entry");
+    for (entry of entries) {
+        a = entry.getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "block";
+            entry.style.display = "block";
         } else {
-            a[i].style.display = "none";
+            entry.style.display = "none";
         }
     }
 }

@@ -19,7 +19,10 @@ session_start();
     echo "<input id='" . $entity . ".filter-search.input' type='text' placeholder='Filter " . $entity . "..' onfocus='showFilterSearch(\"" . $entity . "\")' onfocusout='hideFilterSearch(\"" . $entity . "\")' onkeyup='updateFilterSearch(\"" . $entity . "\")'>";
     echo "<div id='" . $entity . ".filter-search.list' class='filter-search-list'>";
     foreach ($result as $row) {
-        echo "<a href='#" . $row["name"] . "'>" . $row["name"] . "</a>";
+        echo "<div class='filter-search-entry'>";
+        echo    "<a>".$row["name"]."</a>";
+        echo    "<button>+</button>";
+        echo "</div>";
     }
     echo "</div>";
     echo "</div>";
