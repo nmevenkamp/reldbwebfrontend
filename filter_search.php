@@ -12,7 +12,7 @@ session_start();
     $entity = $_GET['entity'];
 
     $db = new PDO("sqlite:" . $_SESSION["db_path"]);
-    $sql = "SELECT * FROM " . $entity;
+    $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
     $result = $db->query($sql);
 
     echo "<div id='" . $entity . ".filter-search.dropdown' class='filter-search-dropdown'>";
