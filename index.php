@@ -7,9 +7,10 @@ $_SESSION["entities"] = ["projects", "technologies"];
 
 <head>
   <link rel="stylesheet/less" href="styles/index.css">
-  <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+  <link rel="stylesheet" href="styles/entities.css">
   <link rel="stylesheet" href="styles/filters.css">
   <link rel="stylesheet" href="styles/filter_search.css">
+  <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
   <script type="text/javascript" src="scripts/filters.js"></script>
   <script type="text/javascript">
     entities = ["projects", "technologies"];
@@ -18,6 +19,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
       for (entity of entities) {
         loadFilterSearch(entity);
         loadFilters(entity);
+        updateEntities(entity);
       }
     }
 
@@ -42,6 +44,23 @@ $_SESSION["entities"] = ["projects", "technologies"];
       xmlhttp.open("GET", "filters.php?entity=" + entity, true);
       xmlhttp.send();
     }
+
+    function updateEntities(entity) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById(entity + ".entities").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "entities.php?entity=" + entity, true);
+      xmlhttp.send();
+    }
+
+    function updateAllEntities() {
+      for (entity of entities) {
+        updateEntities(entity);
+      }
+    }
   </script>
 </head>
 
@@ -53,6 +72,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
       echo "  <div id='" . $entity . ".title' class='entity-title'>" . ucfirst($entity) . "</div>";
       echo "  <div id='" . $entity . ".filter-search'></div>";
       echo "  <div id='" . $entity . ".filters'></div>";
+      echo "  <div id='" . $entity . ".entities'></div>";
       echo "</div>";
     }
     ?>

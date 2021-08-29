@@ -3,10 +3,6 @@ session_start();
 ?>
 <html>
 
-<head>
-    <link rel="stylesheet" href="styles/filters.css">
-</head>
-
 <body>
     <?php
     $entity = $_GET['entity'];
