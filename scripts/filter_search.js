@@ -1,4 +1,3 @@
-
 function showFilterSearch(entity) {
     div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "block";
@@ -8,6 +7,7 @@ function showFilterSearch(entity) {
     }
     filterFunction(entity);
 }
+
 function hideFilterSearch(entity) {
     div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "none";
@@ -16,6 +16,7 @@ function hideFilterSearch(entity) {
         a[i].style.display = "none";
     }
 }
+
 function updateFilterSearch(entity) {
     var input, filter, a, i;
     input = document.getElementById(entity + ".filter-search.input");
