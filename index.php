@@ -1,6 +1,7 @@
 <?php
   session_start();
   $_SESSION["db_path"] = "data/my_db.db";
+  $_SESSION["entities"] = ["projects"];
 ?>
 <html>
   <head>
@@ -23,6 +24,10 @@
     </script>
   </head>
   <body onload="onload()">
-    <div id="projects.filters"></div>
+    <?php
+      foreach ($_SESSION["entities"] as $entity) {
+        echo "<div id='".$entity.".filters'></div>";
+      }
+    ?>
   </body>
 </html>
