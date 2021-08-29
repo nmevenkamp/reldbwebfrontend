@@ -17,14 +17,14 @@
         }
       }
       function loadFilterSearch(entity) {
-        var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById(entity + ".filter-search").innerHTML = this.responseText;
-            }
-          };
-          xmlhttp.open("GET","filter_search.php?entity="+entity,true);
-          xmlhttp.send();
+      var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById(entity + ".filter-search").innerHTML = this.responseText;
+          }
+        };
+        xmlhttp.open("GET","filter_search.php?entity="+entity,true);
+        xmlhttp.send();
       }
     </script>
   </head>
