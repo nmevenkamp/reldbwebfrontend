@@ -1,10 +1,8 @@
 .filter-search-dropdown {
     display: block;
-    position: absolute;
     background-color: #f6f6f6;
     min-width: 300px;
     border: 1px solid #ddd;
-    z-index: 1;
 }
 
 .filter-search-dropdown input {
@@ -21,7 +19,7 @@
 .filter-search-list {
     display: none;
     overflow-y: auto;
-    height: 200px;
+    max-height: 200px;
 }
 
 .filter-search-entry {
@@ -33,6 +31,26 @@
 .filter-search-entry:hover {
     background-color: #f1f1f1
 }
-.filter-saerch-entry a {
-    width: 80%;
+.filter-search-entry button {
+    float: right;
+    margin-left: 5px;
+    border: none;
+    text-decoration: none;
+    padding-top: 3px;
+    padding-right: 7px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    text-align: center;
+}
+.filter-search-or-button {
+    background-color: #ccc;
+}
+.filter-search-or-button:hover {
+    background-color: #ddd;
+}
+.filter-search-and-button {
+    background-color: #acacac;
+}
+.filter-search-and-button:hover {
+    background-color: #bdbdbd;
 }

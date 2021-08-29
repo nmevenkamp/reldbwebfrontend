@@ -12,7 +12,7 @@
 @entity-col-padding: 25px;
 .entity-col {
     display: inline-block;
-    *display: inline;
+    *display: block;
     zoom: 1;
     vertical-align: top;
     width: 300px;
