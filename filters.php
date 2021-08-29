@@ -10,7 +10,7 @@
             $entity = $_GET['entity'];
 
             $db = new PDO("sqlite:".$_SESSION["db_path"]);
-            $sql = "SELECT * FROM projects";
+            $sql = "SELECT * FROM ".$entity;
             $result = $db->query($sql);
 
             echo "<div id='".$entity.".filters.dropdown' class='filters-dropdown'>";

@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#entities-cols {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+@entity-col-padding: 25px;
+.entity-col {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+    width: 300px;
+    padding-left: @entity-col-padding;
+    padding-right: @entity-col-padding;
+}
+.entity-col::after {
+    display: inline-block;
+    content: "";
+    background-color: #CCC;
+    width: 1px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    margin-left: -@entity-col-padding;
+}
+
+.entity-title {
+    text-align: center;
+    padding: 10px;
+    font-size: 16pt;
+}
