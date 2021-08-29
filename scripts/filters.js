@@ -43,6 +43,8 @@ function addFilter(filter_id) {
     entry = document.getElementById("filters." + filter_id);
     entry.setAttribute("data-active", 1);
     entry.style.display = "block";
+
+    updateAllEntities();
 }
 
 function removeFilter(filter_id) {
@@ -51,4 +53,21 @@ function removeFilter(filter_id) {
     entry = document.getElementById("filters." + filter_id);
     entry.setAttribute("data-active", 0);
     entry.style.display = "none";
+
+    updateAllEntities();
+}
+
+function getFilters() {
+    filters = [];
+    entries = document.getElementsByClassName("filter-entry");
+    for (entry of entries) {
+        if (entry.getAttribute("data-active") == 1) {
+            // remove leading 'filters.'
+            filter_str = entry.id;
+            filter_str = filter_str.substring(filter_str.indexOf(".") + 1);
+            filters.push(filter_str);
+        }
+    }
+    filters = filters.join(',');
+    return filters;
 }

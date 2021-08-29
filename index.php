@@ -11,6 +11,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
   <link rel="stylesheet" href="styles/filters.css">
   <link rel="stylesheet" href="styles/filter_search.css">
   <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+  <!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> -->
   <script type="text/javascript" src="scripts/filters.js"></script>
   <script type="text/javascript">
     entities = ["projects", "technologies"];
@@ -19,8 +20,8 @@ $_SESSION["entities"] = ["projects", "technologies"];
       for (entity of entities) {
         loadFilterSearch(entity);
         loadFilters(entity);
-        updateEntities(entity);
       }
+      updateAllEntities();
     }
 
     function loadFilterSearch(entity) {
@@ -45,20 +46,21 @@ $_SESSION["entities"] = ["projects", "technologies"];
       xmlhttp.send();
     }
 
-    function updateEntities(entity) {
+    function updateEntities(entity, filters) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           document.getElementById(entity + ".entities").innerHTML = this.responseText;
         }
       };
-      xmlhttp.open("GET", "entities.php?entity=" + entity, true);
+      xmlhttp.open("GET", "entities.php?entity=" + entity + "&filters=" + filters, true);
       xmlhttp.send();
     }
 
     function updateAllEntities() {
+      filters = getFilters();
       for (entity of entities) {
-        updateEntities(entity);
+        updateEntities(entity, filters);
       }
     }
   </script>
