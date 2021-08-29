@@ -17,7 +17,7 @@ function hideFilterSearch(entity) {
     }
 }
 function updateFilterSearch(entity) {
-    var input, filter, ul, li, a, i;
+    var input, filter, a, i;
     input = document.getElementById(entity + ".filter-search.input");
     filter = input.value.toUpperCase();
     div = document.getElementById(entity + ".filter-search.list");
