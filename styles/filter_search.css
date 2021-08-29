@@ -1,4 +1,4 @@
-.filters-dropdown {
+.filter-search-dropdown {
     display: block;
     position: absolute;
     background-color: #f6f6f6;
@@ -7,29 +7,29 @@
     z-index: 1;
 }
 
-.filters-dropdown input {
+.filter-search-dropdown input {
     font-size: 16px;
     padding: 14px 20px 12px 12px;
     border: none;
     border-bottom: 1px solid #ddd;
     width: 100%;
 }
-.filters-dropdown input:focus {
+.filter-search-dropdown input:focus {
     outline: 3px solid #ddd;
 }
 
-.filters-list {
+.filter-search-list {
     display: none;
     overflow-y: auto;
     height: 200px;
 }
 
-.filters-list a {
+.filter-search-list a {
     display: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
 }
-.filters-list a:hover {
+.filter-search-list a:hover {
     background-color: #f1f1f1
 }

@@ -3,7 +3,7 @@
 ?>
 <html>
     <head>
-        <link rel="stylesheet" href="styles/filters.css">
+        <link rel="stylesheet" href="styles/filter_search.css">
     </head>
     <body>
         <?php
@@ -13,9 +13,9 @@
             $sql = "SELECT * FROM ".$entity;
             $result = $db->query($sql);
 
-            echo "<div id='".$entity.".filters.dropdown' class='filters-dropdown'>";
-                echo "<input id='".$entity.".filters.input' type='text' placeholder='Filter ".$entity."..' onfocus='showFilters(\"".$entity."\")' onfocusout='hideFilters(\"".$entity."\")' onkeyup='filterFunction(\"".$entity."\")'>";
-                echo "<div id='".$entity.".filters.list' class='filters-list'>";
+            echo "<div id='".$entity.".filter-search.dropdown' class='filter-search-dropdown'>";
+                echo "<input id='".$entity.".filter-search.input' type='text' placeholder='Filter ".$entity."..' onfocus='showFilterSearch(\"".$entity."\")' onfocusout='hideFilterSearch(\"".$entity."\")' onkeyup='updateFilterSearch(\"".$entity."\")'>";
+                echo "<div id='".$entity.".filter-search.list' class='filter-search-list'>";
                     foreach ($result as $row) {
                         echo "<a href='#".$row["name"]."'>".$row["name"]."</a>";
                     }

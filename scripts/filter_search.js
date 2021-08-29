@@ -1,6 +1,6 @@
 
-function showFilters(entity) {
-    div = document.getElementById(entity + ".filters.list");
+function showFilterSearch(entity) {
+    div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "block";
     a = div.getElementsByTagName("a");
     for (i = 0; i < a.length; i++) {
@@ -8,19 +8,19 @@ function showFilters(entity) {
     }
     filterFunction(entity);
 }
-function hideFilters(entity) {
-    div = document.getElementById(entity + ".filters.list");
+function hideFilterSearch(entity) {
+    div = document.getElementById(entity + ".filter-search.list");
     div.style.display = "none";
     a = div.getElementsByTagName("a");
     for (i = 0; i < a.length; i++) {
         a[i].style.display = "none";
     }
 }
-function filterFunction(entity) {
+function updateFilterSearch(entity) {
     var input, filter, ul, li, a, i;
-    input = document.getElementById(entity + ".filters.input");
+    input = document.getElementById(entity + ".filter-search.input");
     filter = input.value.toUpperCase();
-    div = document.getElementById(entity + ".filters.list");
+    div = document.getElementById(entity + ".filter-search.list");
     a = div.getElementsByTagName("a");
     for (i = 0; i < a.length; i++) {
         txtValue = a[i].textContent || a[i].innerText;
