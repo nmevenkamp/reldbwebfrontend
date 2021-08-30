@@ -37,22 +37,16 @@ function updateFilterSearch(entity) {
     }
 }
 
-function addFilter(filter_id) {
-    entry = document.getElementById("filter-search." + filter_id);
-    entry.setAttribute("data-active", 1);
-    entry = document.getElementById("filters." + filter_id);
-    entry.setAttribute("data-active", 1);
-    entry.style.display = "block";
+function addFilter(filter_id, logical_op) {
+    document.getElementById("filter-search." + filter_id).setAttribute("data-active", 1);
+    document.getElementById("filters." + filter_id + "." + logical_op).setAttribute("data-active", 1);
 
     updateAllEntities();
 }
 
-function removeFilter(filter_id) {
-    entry = document.getElementById("filter-search." + filter_id);
-    entry.setAttribute("data-active", 0);
-    entry = document.getElementById("filters." + filter_id);
-    entry.setAttribute("data-active", 0);
-    entry.style.display = "none";
+function removeFilter(filter_id, logical_op) {
+    document.getElementById("filter-search." + filter_id).setAttribute("data-active", 0);
+    document.getElementById("filters." + filter_id + "." + logical_op).setAttribute("data-active", 0);
 
     updateAllEntities();
 }

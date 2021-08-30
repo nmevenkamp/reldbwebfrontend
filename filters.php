@@ -9,15 +9,19 @@ session_start();
 
     $db = new PDO("sqlite:" . $_SESSION["db_path"]);
     $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
-    $result = $db->query($sql);
+
+    $logical_ops = array("and", "or");
 
     echo "<div id='" . $entity . ".filters.list' class='filters-list'>";
-    foreach ($result as $row) {
-        $filter_id = $entity . "." . $row["id"];
-        echo "<div id='filters." . $filter_id . "' class='filter-entry' data-active=0>";
-        echo    "<a>" . $row["name"] . "</a>";
-        echo    "<button class='remove-filter-button' onmousedown='removeFilter(\"" . $filter_id . "\")'>x</button>";
-        echo "</div>";
+    foreach ($logical_ops as $logical_op) {
+        $result = $db->query($sql);
+        foreach ($result as $row) {
+            $filter_id = $entity . "." . $row["id"];
+            echo "<div id='filters." . $filter_id . "." . $logical_op . "' class='filter-entry' data-active=0 data-logical=" . $logical_op . ">";
+            echo    "<a>" . $row["name"] . "</a>";
+            echo    "<button class='remove-filter-button' onmousedown='removeFilter(\"" . $filter_id . "\",\"" . $logical_op ."\")'>x</button>";
+            echo "</div>";
+        }
     }
     echo "</div>";
     ?>
