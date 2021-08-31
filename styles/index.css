@@ -1,6 +1,15 @@
+@import url(//db.onlinewebfonts.com/c/0b811799540d4b23474c8cd3c9576879?family=FF+Tisa+Sans);
+
+@font-face {
+    font-family: "FF Tisa Sans";
+    src: url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.eot");
+    src: url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.woff") format("woff"), url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0b811799540d4b23474c8cd3c9576879.svg#FF Tisa Sans") format("svg");
+}
+
 * {
     margin: 0;
     padding: 0;
+    font-family: "FF Tisa Sans";
 }
 
 #entities-cols {
@@ -10,6 +19,7 @@
 }
 
 @entity-col-padding: 25px;
+
 .entity-col {
     display: inline-block;
     *display: block;
@@ -19,6 +29,7 @@
     padding-left: @entity-col-padding;
     padding-right: @entity-col-padding;
 }
+
 .entity-col::after {
     display: inline-block;
     content: "";

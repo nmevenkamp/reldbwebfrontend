@@ -6,6 +6,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
 <html>
 
 <head>
+  <link href="//db.onlinewebfonts.com/c/0b811799540d4b23474c8cd3c9576879?family=FF+Tisa+Sans" rel="stylesheet" type="text/css"/> 
   <link rel="stylesheet/less" href="styles/index.css">
   <link rel="stylesheet" href="styles/entities.css">
   <link rel="stylesheet" href="styles/filters.css">
