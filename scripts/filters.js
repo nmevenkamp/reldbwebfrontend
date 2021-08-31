@@ -27,8 +27,8 @@ function updateFilterSearch(entity) {
     for (entry of entries) {
         if (entry.getAttribute("data-active") == 1)
             continue;
-        a = entry.getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
+        filter_name = entry.getElementsByClassName("filter-search-name")[0];
+        txtValue = filter_name.textContent || filter_name.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             entry.style.display = "block";
         } else {

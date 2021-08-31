@@ -17,9 +17,10 @@ session_start();
     foreach ($result as $row) {
         $filter_id = $entity . "." . $row["id"];
         echo "<div id='filter-search." . $filter_id . "' class='filter-search-entry' data-active=0>";
-        echo    "<a>" . $row["name"] . "</a>";
-        echo    "<button class='filter-search-or-button' onmousedown='addFilter(\"" . $filter_id . "\",\"or\")'>or</button>";
-        echo    "<button class='filter-search-and-button' onmousedown='addFilter(\"" . $filter_id . "\",\"and\")'>and</button>";
+        echo "  <button class='filter-search-add-button' data-logical='or' onmousedown='addFilter(\"" . $filter_id . "\",\"or\")'><p>or</p></button>";
+        echo "  <button class='filter-search-add-button' data-logical='and' onmousedown='addFilter(\"" . $filter_id . "\",\"and\")'><p>and</p></button>";
+        echo "  <p class='filter-search-name' data-positioned='0'>" . $row["name"] . "</p>";
+        echo "  <p class='filter-search-name' data-positioned='1'>" . $row["name"] . "</p>";
         echo "</div>";
     }
     echo "</div>";

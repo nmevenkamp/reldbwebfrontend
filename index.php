@@ -6,7 +6,6 @@ $_SESSION["entities"] = ["projects", "technologies"];
 <html>
 
 <head>
-  <link href="//db.onlinewebfonts.com/c/0b811799540d4b23474c8cd3c9576879?family=FF+Tisa+Sans" rel="stylesheet" type="text/css"/> 
   <link rel="stylesheet/less" href="styles/index.css">
   <link rel="stylesheet" href="styles/entities.css">
   <link rel="stylesheet" href="styles/filters.css">
@@ -72,7 +71,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
     <?php
     foreach ($_SESSION["entities"] as $entity) {
       echo "<div id='" . $entity . ".column' class='entity-col'>";
-      echo "  <div id='" . $entity . ".title' class='entity-title'>" . ucfirst($entity) . "</div>";
+      echo "  <h1 id='" . $entity . ".title' class='entity-title'>" . ucfirst($entity) . "</h1>";
       echo "  <div id='" . $entity . ".filter-search'></div>";
       echo "  <div id='" . $entity . ".filters'></div>";
       echo "  <div id='" . $entity . ".entities'></div>";

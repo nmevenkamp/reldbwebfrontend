@@ -8,14 +8,22 @@
     width: 100%;
     table-layout: fixed;
 }
-.entities-list td {
-    padding: 14px 20px 12px 12px;
-}
 .entities-list tr {
     font-size: 16px;
     border: none;
     border-bottom: 1px solid #ddd;
     width: 100%;
+}
+.entities-list button {
+    text-decoration: none;
+    background: none;
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 14px 20px 12px 12px;
+}
+.entities-list button:hover {
+    background-color: rgb(255, 255, 169);
 }
 .entities-list tr:nth-child(even) {background: #f5f5f5}
 .entities-list tr:nth-child(odd) {background: #fafafa}

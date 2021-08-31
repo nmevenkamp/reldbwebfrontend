@@ -4,10 +4,14 @@
     border-top: 2px solid #aaa;
 }
 
-.filter-entry {
-    color: black;
-    padding: 12px 16px;
+.filter-entry button{
+    padding: 8px;
+    padding-left: 24px;
     text-decoration: none;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 10pt;
 }
 .filter-entry[data-active="0"] {
     display: none;
@@ -15,32 +19,15 @@
 .filter-entry[data-active="1"] {
     display: block;
 }
-.filter-entry[data-logical="and"] {
+.filter-entry[data-logical="and"] button{
     background-color: #d5d5d5;
 }
-.filter-entry[data-logical="or"] {
+.filter-entry[data-logical="and"] button:hover {
+    background-color: rgb(255, 128, 128);
+}
+.filter-entry[data-logical="or"] button{
     background-color: #f5f5f5;
 }
-.filter-entry button {
-    float: right;
-    margin-left: 5px;
-    border: none;
-    text-decoration: none;
-    padding-top: 3px;
-    padding-right: 7px;
-    padding-bottom: 3px;
-    padding-left: 7px;
-    text-align: center;
-}
-.filter-entry[data-logical="and"] button {
-    background-color: #aaa;
-}
-.filter-entry[data-logical="or"] button {
-    background-color: #ccc;
-}
-.filter-entry[data-logical="and"] button:hover {
-    background-color: #bbb;
-}
 .filter-entry[data-logical="or"] button:hover {
-    background-color: #ddd;
+    background-color: rgb(255, 128, 128);
 }
