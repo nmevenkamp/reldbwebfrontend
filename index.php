@@ -11,7 +11,6 @@ $_SESSION["entities"] = ["projects", "technologies"];
   <link rel="stylesheet" href="styles/filters.css">
   <link rel="stylesheet" href="styles/filter_search.css">
   <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
-  <!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> -->
   <script type="text/javascript" src="scripts/filters.js"></script>
   <script type="text/javascript">
     entities = ["projects", "technologies"];
