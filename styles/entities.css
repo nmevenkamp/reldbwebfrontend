@@ -20,7 +20,8 @@
     width: 100%;
     border: none;
     text-align: left;
-    padding: 14px 20px 12px 12px;
+    padding: 14px;
+    padding-left: 20px;
 }
 .entities-list button:hover {
     background-color: rgb(255, 255, 169);

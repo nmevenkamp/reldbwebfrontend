@@ -20,7 +20,8 @@
 .filter-search-list {
     display: none;
     overflow-y: auto;
-    max-height: 200px;
+    max-height: 150px;
+    margin-top: 3px;
 }
 
 .filter-search-entry {
@@ -42,7 +43,7 @@
     padding-left: 28px;
     opacity: 0.0;
 }
-.filter-search-name[data-positioned='1'] {
+.filter-search-name[data-positioned="1"] {
     z-index: 1;
     position: absolute;
     top: 0;
@@ -62,14 +63,14 @@
     display: none;
     padding: 0px 6px;
 }
-.filter-search-add-button[data-logical='and'] {
+.filter-search-add-button[data-logical="and"] {
     left: 50%;
     text-align: right;
 }
-.filter-search-add-button[data-logical='or']:hover {
+.filter-search-add-button[data-logical="or"]:hover {
     background-color: rgb(215, 255, 215);
 }
-.filter-search-add-button[data-logical='and']:hover {
+.filter-search-add-button[data-logical="and"]:hover {
     background-color: rgb(149, 255, 149);
 }
 .filter-search-add-button:hover p {

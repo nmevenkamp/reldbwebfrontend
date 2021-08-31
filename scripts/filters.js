@@ -42,6 +42,7 @@ function addFilter(filter_id, logical_op) {
     document.getElementById("filters." + filter_id + "." + logical_op).setAttribute("data-active", 1);
 
     updateAllEntities();
+    toggleFiltersListVisibility();
 }
 
 function removeFilter(filter_id, logical_op) {
@@ -49,6 +50,18 @@ function removeFilter(filter_id, logical_op) {
     document.getElementById("filters." + filter_id + "." + logical_op).setAttribute("data-active", 0);
 
     updateAllEntities();
+    toggleFiltersListVisibility();
+}
+
+function toggleFiltersListVisibility() {
+    lists = document.getElementsByClassName("filters-list");
+    for (list of lists) {
+        filters = list.querySelectorAll('[data-active="1"]');
+        if (filters.length > 0)
+            list.style.display = "block";
+        else
+        list.style.display = "none";
+    }
 }
 
 function getFilters() {
