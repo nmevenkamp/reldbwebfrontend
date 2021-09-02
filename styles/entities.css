@@ -31,9 +31,9 @@
 }
 
 .entities-list tr:nth-child(even) {
-    background: var(--color-background-medium);
+    background-color: var(--color-background-medium);
 }
 
 .entities-list tr:nth-child(odd) {
-    background: var(--color-background-light);
+    background-color: var(--color-background-light);
 }
