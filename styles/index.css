@@ -5,12 +5,18 @@
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 12pt;
+    color: var(--color-font-medium);
 }
 
-#entities-cols {
+#entity-cols {
     display: flex;
     height: 100%;
     width: 100%;
+}
+
+#entity-cols[data-disabled="1"] {
+    pointer-events: none;
+    opacity: 0.25;
 }
 
 @entity-col-padding: 25px;
@@ -28,7 +34,7 @@
 .entity-col::after {
     display: inline-block;
     content: "";
-    background-color: #CCC;
+    background-color: var(--color-outline-light);
     width: 1px;
     height: 100%;
     position: fixed;
@@ -40,4 +46,5 @@
     text-align: center;
     padding: 12px;
     font-size: 16pt;
+    color: var(--color-font-dark);
 }

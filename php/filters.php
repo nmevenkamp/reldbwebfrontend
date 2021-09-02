@@ -7,7 +7,7 @@ session_start();
     <?php
     $entity = $_GET['entity'];
 
-    $db = new PDO("sqlite:" . $_SESSION["db_path"]);
+    $db = new PDO("sqlite:../" . $_SESSION["db_path"]);
     $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
 
     $logical_ops = array("and", "or");

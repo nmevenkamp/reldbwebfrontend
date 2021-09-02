@@ -16,7 +16,7 @@ session_start();
         $filters = explode(',', $_GET['filters']);
     }
 
-    $db = new PDO("sqlite:" . $_SESSION["db_path"]);
+    $db = new PDO("sqlite:../" . $_SESSION["db_path"]);
     $entity_ids = [];
     $all_relation_conditions = [
         "and" => [],

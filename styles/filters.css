@@ -1,10 +1,11 @@
 .filters-list {
     display: none;
-    border: 1px solid #ddd;
-    border-top: 2px solid #aaa;
+    border: 1px solid var(--color-outline-light);
+    border-top: 2px solid var(--color-outline-medium);
+    margin-left: 2px;
 }
 
-.filter-entry button{
+.filter-entry button {
     padding: 8px;
     padding-left: 24px;
     text-decoration: none;
@@ -13,21 +14,27 @@
     text-align: left;
     font-size: 10pt;
 }
+
 .filter-entry[data-active="0"] {
     display: none;
 }
+
 .filter-entry[data-active="1"] {
     display: block;
 }
-.filter-entry[data-logical="and"] button{
-    background-color: #d5d5d5;
+
+.filter-entry[data-logical="and"] button {
+    background-color: var(--color-background-very-dark);
 }
+
 .filter-entry[data-logical="and"] button:hover {
-    background-color: rgb(255, 128, 128);
+    background-color: var(--color-delete);
 }
-.filter-entry[data-logical="or"] button{
-    background-color: #f5f5f5;
+
+.filter-entry[data-logical="or"] button {
+    background-color: var(--color-background-dark);
 }
+
 .filter-entry[data-logical="or"] button:hover {
-    background-color: rgb(255, 128, 128);
+    background-color: var(--color-delete);
 }

@@ -7,13 +7,16 @@ session_start();
     <?php
     $entity = $_GET['entity'];
 
-    $db = new PDO("sqlite:" . $_SESSION["db_path"]);
+    $db = new PDO("sqlite:../" . $_SESSION["db_path"]);
     $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
     $result = $db->query($sql);
 
     echo "<div id='" . $entity . ".filter-search.dropdown' class='filter-search-dropdown'>";
-    echo "<input id='" . $entity . ".filter-search.input' type='text' placeholder='Filter " . $entity . "..' onfocus='showFilterSearch(\"" . $entity . "\")' onfocusout='hideFilterSearch(\"" . $entity . "\")' onkeyup='updateFilterSearch(\"" . $entity . "\")'>";
-    echo "<div id='" . $entity . ".filter-search.list' class='filter-search-list'>";
+    echo "  <div class='filter-search-input-container'>";
+    echo "      <input id='" . $entity . ".filter-search.input' type='text' placeholder='add or filter " . $entity . "..' onfocus='showFilterSearch(\"" . $entity . "\")' onfocusout='hideFilterSearch(\"" . $entity . "\")' onkeyup='updateFilterSearch(\"" . $entity . "\")'>";
+    echo "      <button id='" . $entity . ".filter-search.new' class='filter-search-new-button' onclick='addEntity(\"" . $entity . "\")'>&#43;</button>";
+    echo "  </div>";
+    echo "  <div id='" . $entity . ".filter-search.list' class='filter-search-list'>";
     foreach ($result as $row) {
         $filter_id = $entity . "." . $row["id"];
         echo "<div id='filter-search." . $filter_id . "' class='filter-search-entry' data-active=0>";
@@ -23,7 +26,7 @@ session_start();
         echo "  <p class='filter-search-name' data-positioned='1'>" . $row["name"] . "</p>";
         echo "</div>";
     }
-    echo "</div>";
+    echo "  </div>";
     echo "</div>";
     ?>
 </body>

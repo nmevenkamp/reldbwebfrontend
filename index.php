@@ -1,17 +1,29 @@
 <?php
 session_start();
+
+# define session globals
 $_SESSION["db_path"] = "data/my_db.db";
 $_SESSION["entities"] = ["projects", "technologies"];
+$_SESSION["entity_singulars"] = [
+  "projects" => "project",
+  "technologies" => "technology"
+]
+
 ?>
 <html>
 
 <head>
+  <link rel="stylesheet" href="styles/colors.css">
   <link rel="stylesheet/less" href="styles/index.css">
-  <link rel="stylesheet" href="styles/entities.css">
   <link rel="stylesheet" href="styles/filters.css">
   <link rel="stylesheet" href="styles/filter_search.css">
+  <link rel="stylesheet" href="styles/entities.css">
+  <link rel="stylesheet" href="styles/edit_entity.css">
   <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+  <script type="text/javascript" src="scripts/misc.js"></script>
   <script type="text/javascript" src="scripts/filters.js"></script>
+  <script type="text/javascript" src="scripts/entities.js"></script>
+  <script type="text/javascript" src="scripts/edit_entity.js"></script>
   <script type="text/javascript">
     entities = ["projects", "technologies"];
 
@@ -22,51 +34,11 @@ $_SESSION["entities"] = ["projects", "technologies"];
       }
       updateAllEntities();
     }
-
-    function loadFilterSearch(entity) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById(entity + ".filter-search").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "filter_search.php?entity=" + entity, true);
-      xmlhttp.send();
-    }
-
-    function loadFilters(entity) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById(entity + ".filters").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "filters.php?entity=" + entity, true);
-      xmlhttp.send();
-    }
-
-    function updateEntities(entity, filters) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById(entity + ".entities").innerHTML = this.responseText;
-        }
-      };
-      xmlhttp.open("GET", "entities.php?entity=" + entity + "&filters=" + filters, true);
-      xmlhttp.send();
-    }
-
-    function updateAllEntities() {
-      filters = getFilters();
-      for (entity of entities) {
-        updateEntities(entity, filters);
-      }
-    }
   </script>
 </head>
 
 <body onload="onload()">
-  <div id="entity-cols">
+  <div id="entity-cols" data-disabled=0>
     <?php
     foreach ($_SESSION["entities"] as $entity) {
       echo "<div id='" . $entity . ".column' class='entity-col'>";
@@ -78,6 +50,7 @@ $_SESSION["entities"] = ["projects", "technologies"];
     }
     ?>
   </div>
+  <div id='edit-entity-dialog'></div>
 </body>
 
 </html>

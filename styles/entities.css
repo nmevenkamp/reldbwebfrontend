@@ -2,18 +2,20 @@
     display: block;
     padding-top: 15px;
     margin-top: 15px;
-    border-top: 1px solid gray;    
+    border-top: 1px solid var(--color-outline-dark);
 }
+
 .entities-list table {
     width: 100%;
     table-layout: fixed;
 }
+
 .entities-list tr {
     font-size: 16px;
     border: none;
-    border-bottom: 1px solid #ddd;
     width: 100%;
 }
+
 .entities-list button {
     text-decoration: none;
     background: none;
@@ -23,8 +25,15 @@
     padding: 14px;
     padding-left: 20px;
 }
+
 .entities-list button:hover {
-    background-color: rgb(255, 255, 169);
+    background-color: var(--color-edit);
 }
-.entities-list tr:nth-child(even) {background: #f5f5f5}
-.entities-list tr:nth-child(odd) {background: #fafafa}
+
+.entities-list tr:nth-child(even) {
+    background: var(--color-background-medium);
+}
+
+.entities-list tr:nth-child(odd) {
+    background: var(--color-background-light);
+}
