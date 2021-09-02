@@ -2,6 +2,7 @@
 session_start();
 
 # define session globals
+$_SESSION["log"] = true;
 $_SESSION["db_path"] = "data/my_db.db";
 $_SESSION["entities"] = ["projects", "technologies"];
 $_SESSION["entity_singulars"] = [

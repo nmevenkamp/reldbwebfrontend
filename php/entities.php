@@ -6,6 +6,7 @@ session_start();
 <body>
     <?php
 
+    $log = $_SESSION["log"];
     $entity = $_GET['entity'];
 
     // parse filters
@@ -46,6 +47,8 @@ session_start();
     }
     $relation_condition = implode(" OR ", array_values($relation_condition));
     $sql = "SELECT * FROM " . $entity . " WHERE " . $entity_ids_condition . " AND " . $relation_condition . " ORDER BY name ASC";
+    if ($log)
+        file_put_contents('../log.txt', date("Y-m-d:H:i:s") . ": sql='" . $sql . "'" . PHP_EOL, FILE_APPEND);
     $result = $db->query($sql);
 
     echo "<div id='" . $entity . ".entities.list' class='entities-list'>";
