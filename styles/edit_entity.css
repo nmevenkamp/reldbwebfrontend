@@ -65,10 +65,6 @@
 
 #edit-entity-post-buttons button {
     float: right;
-    margin: 0px 4px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--color-outline-dark);
 }
 
 #edit-entity-ok-button {
@@ -89,8 +85,20 @@
 
 #edit-entity-delete-button {
     background-color: var(--color-delete);
+    margin-right: 20px;
 }
 
 #edit-entity-delete-button:hover {
     background-color: var(--color-delete-hover);
+}
+
+#edit-entity-delete-button::after {
+    display: inline-block;
+    content: "";
+    background-color: var(--color-outline-light);
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    margin-left: 20px;
 }

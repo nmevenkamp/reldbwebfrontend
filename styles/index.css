@@ -8,6 +8,13 @@
     color: var(--color-font-medium);
 }
 
+button {
+    margin: 0px 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--color-outline-dark);
+}
+
 #entity-cols {
     display: flex;
     height: 100%;

@@ -18,7 +18,7 @@ session_start();
         foreach ($result as $row) {
             $filter_id = $entity . "." . $row["id"];
             echo "<div id='filters." . $filter_id . "." . $logical_op . "' class='filter-entry' data-active=0 data-logical=" . $logical_op . ">";
-            echo    "<button onmousedown='removeFilter(\"" . $filter_id . "\",\"" . $logical_op ."\")'>" . $row["name"] . "</button>";
+            echo    "<button onmousedown='removeFilter(\"" . $filter_id . "\",\"" . $logical_op . "\")'>" . $row["name"] . "</button>";
             echo "</div>";
         }
     }

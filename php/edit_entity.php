@@ -14,7 +14,14 @@ session_start();
     } elseif ($action == "edit") {
         $id = $_GET['id'];
         $db = new PDO("sqlite:../" . $_SESSION["db_path"]);
-        $name = "none";
+        $sql = "SELECT * FROM " . $entity . " WHERE id='" . $id . "' LIMIT 1";
+        $result = $db->query($sql);
+
+        foreach ($result as $row) {
+            $name = $row["name"];
+
+            break;
+        }
     }
 
     echo "<div id='edit-entity-container'>";

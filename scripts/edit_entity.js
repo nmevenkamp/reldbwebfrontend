@@ -11,6 +11,18 @@ function addEntity(entity) {
     showEditEntityDialog();
 }
 
+function editEntity(entity, id) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('edit-entity-dialog').innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET", "php/edit_entity.php?entity=" + entity + "&id=" + id + "&a=edit", true);
+    xmlhttp.send();
+    showEditEntityDialog();
+}
+
 function showEditEntityDialog() {
     document.getElementById("edit-entity-dialog").style.display = "block";
     document.getElementById("entity-cols").setAttribute("data-disabled", 1);

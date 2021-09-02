@@ -29,6 +29,7 @@
     width: 35px;
     border-radius: 0px;
     border: 1px;
+    margin: 0px;
     margin-bottom: 1px;
     background-color: var(--color-accept);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -44,13 +45,14 @@
 .filter-search-list {
     display: none;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 150px;
     margin-top: 3px;
 }
 
 .filter-search-entry {
     display: none;
-    color: black;
+    color: var(--color-font-dark);
     text-decoration: none;
     position: relative;
     width: 100%;
@@ -85,6 +87,9 @@
     left: 0;
     text-align: left;
     z-index: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
 }
 
 .filter-search-add-button p {

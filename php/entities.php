@@ -51,7 +51,7 @@ session_start();
     echo "<div id='" . $entity . ".entities.list' class='entities-list'>";
     echo "<table>";
     foreach ($result as $row) {
-        echo    "<tr><td><button>" . $row["name"] . "</button></td></tr>";
+        echo    "<tr><td><button onclick='editEntity(\"" . $entity . "\",\"" . $row["id"] . "\")'>" . $row["name"] . "</button></td></tr>";
     }
     echo "</table>";
     echo "</div>";
