@@ -4,11 +4,11 @@ function addEntity(entity) {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('edit-entity-dialog').innerHTML = this.responseText;
+            showEditEntityDialog();
         }
     };
     xmlhttp.open("GET", "php/edit_entity.php?entity=" + entity + "&name=" + entry_name + "&a=new", true);
     xmlhttp.send();
-    showEditEntityDialog();
 }
 
 function editEntity(entity, id) {
@@ -16,11 +16,11 @@ function editEntity(entity, id) {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('edit-entity-dialog').innerHTML = this.responseText;
+            showEditEntityDialog();
         }
     };
     xmlhttp.open("GET", "php/edit_entity.php?entity=" + entity + "&id=" + id + "&a=edit", true);
     xmlhttp.send();
-    showEditEntityDialog();
 }
 
 function showEditEntityDialog() {
