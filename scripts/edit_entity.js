@@ -37,12 +37,22 @@ function cancelEditEntity() {
     hideEditEntityDialog();
 }
 
-function acceptEditEntity() {
-    alert("Dummy: added entity!")
-    hideEditEntityDialog();
+function acceptEditEntity(entity, id) {
+    // build form data
+    form_data = new FormData(document.getElementById("edit-entity-form"));
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            hideEditEntityDialog();
+            updateAllEntities();
+        }
+    };
+    xmlhttp.open("GET", "php/edit_entity.php?entity=" + entity + "&id=" + id + "&a=update", true);
+    xmlhttp.send(form_data);
 }
 
-function deleteEntity() {
-    alert("Dummy: you sure you wanna delete?");
+function deleteEntity(entity, id) {
+    alert("Dummy: you sure you wanna delete '" + id + "' from " + entity + "?");
     hideEditEntityDialog();
 }

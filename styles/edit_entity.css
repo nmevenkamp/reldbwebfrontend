@@ -7,7 +7,7 @@
     width: 80%;
     border: 1px solid var(--color-outline-dark);
     border-radius: 12px;
-    background: var(--color-background-light);
+    background-color: var(--color-background-light);
     padding: 25px 35px;
 }
 
@@ -44,7 +44,7 @@
 }
 
 #edit-entity-x-button:hover {
-    background: var(--color-delete);
+    background-color: var(--color-delete);
 }
 
 #edit-entity-name {
