@@ -38,7 +38,7 @@ session_start();
             if ($id == "none") {
                 // add new entry
                 $cols_str = "(" . implode(",", array_keys($_POST)) . ")";
-                $vals_str = "(" . implode(",", array_values($_POST)) . ")";
+                $vals_str = "('" . implode("','", array_values($_POST)) . "')";
                 $sql = "INSERT INTO " . $entity . $cols_str . " VALUES " . $vals_str;
                 if ($log)
                     file_put_contents('../log.txt', date("Y-m-d:H:i:s") . ": sql='" . $sql . "'" . PHP_EOL, FILE_APPEND);
@@ -46,7 +46,7 @@ session_start();
                 // update existing entry
                 $cols_vals_arr = [];
                 foreach ($_POST as $col => $val) {
-                    array_push($cols_vals_arr, $col . " = '" . $vak . "'");
+                    array_push($cols_vals_arr, $col . " = '" . $val . "'");
                 }
                 $cols_vals_str = implode(", ", $cols_vals_arr);
                 $sql = "UPDATE " . $entity . " SET " . $cols_vals_str . " WHERE id=" . $id;
@@ -60,7 +60,7 @@ session_start();
         echo "<div id='edit-entity-container'>";
         echo "  <button id='edit-entity-x-button' onclick='cancelEditEntity()'>x</button>";
         echo "  <h1>" . ucfirst($_SESSION["entity_singulars"][$entity]) . "</h1><br/>";
-        echo "  <form id='edit-entity-form'>";
+        echo "  <form name='edit-entity-form'>";
         echo "      <span id='edit-entity-name-label'>Title: </span><input id='edit-entity-name' name='name' type='text' value='" . $name . "'></br>";
         echo "  </form>";
         echo "  <div id='edit-entity-post-buttons'>";

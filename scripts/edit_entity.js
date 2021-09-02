@@ -39,7 +39,8 @@ function cancelEditEntity() {
 
 function acceptEditEntity(entity, id) {
     // build form data
-    form_data = new FormData(document.getElementById("edit-entity-form"));
+    var form = document.forms.namedItem("edit-entity-form");
+    form_data = new FormData(form);
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -48,7 +49,7 @@ function acceptEditEntity(entity, id) {
             updateAllEntities();
         }
     };
-    xmlhttp.open("GET", "php/edit_entity.php?entity=" + entity + "&id=" + id + "&a=update", true);
+    xmlhttp.open("POST", "php/edit_entity.php?entity=" + entity + "&id=" + id + "&a=update", true);
     xmlhttp.send(form_data);
 }
 
