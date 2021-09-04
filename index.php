@@ -14,12 +14,12 @@ $_SESSION["entity_singulars"] = [
 <html>
 
 <head>
-  <link rel="stylesheet" href="styles/colors.css">
+  <link rel="stylesheet/less" href="styles/colors.css">
   <link rel="stylesheet/less" href="styles/index.css">
-  <link rel="stylesheet" href="styles/filters.css">
-  <link rel="stylesheet" href="styles/filter_search.css">
-  <link rel="stylesheet" href="styles/entities.css">
-  <link rel="stylesheet" href="styles/edit_entity.css">
+  <link rel="stylesheet/less" href="styles/filters.css">
+  <link rel="stylesheet/less" href="styles/filter_search.css">
+  <link rel="stylesheet/less" href="styles/entities.css">
+  <link rel="stylesheet/less" href="styles/edit_entity.css">
   <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
   <script type="text/javascript" src="scripts/misc.js"></script>
   <script type="text/javascript" src="scripts/filters.js"></script>

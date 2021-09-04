@@ -8,6 +8,21 @@
     color: var(--color-font-medium);
 }
 
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+.box .header {
+    flex: 0 1 auto;
+}
+.box .content {
+    flex: 1 1 auto;
+}
+.box .footer {
+    flex: 0 1 40px;
+}
+
 button {
     margin: 0px 4px;
     padding: 4px 8px;
