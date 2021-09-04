@@ -70,6 +70,9 @@
     width: 80%;
     height: 200px;
     margin-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    resize: none;
 }
 
 #edit-entity-relations-container {
@@ -107,14 +110,12 @@
 .relation-search-entry {
     display: none;
     color: var(--color-font-dark);
-    text-decoration: none;
     position: relative;
     width: 100%;
 }
 
 .relation-search-entry button {
     border: none;
-    text-decoration: none;
     background: none;
 }
 
@@ -132,7 +133,6 @@
     text-align: left;
     font-size: 10pt;
     border: none;
-    text-decoration: none;
     border-radius: 0;
     margin: 0;
 }
@@ -156,6 +156,7 @@
     font-size: 12px;
     border: none;
     width: 100%;
+    display: table-row;
 }
 
 .relations-list tr[data-active="0"] {
@@ -163,7 +164,7 @@
 }
 
 .relations-list tr[data-active="1"] {
-    display: block;
+    display: table-row;
 }
 
 .relations-list tr:nth-child(even) {
@@ -175,7 +176,6 @@
 }
 
 .relations-list button {
-    text-decoration: none;
     background: none;
     width: 100%;
     border: none;

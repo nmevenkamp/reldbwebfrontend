@@ -68,7 +68,7 @@ session_start();
         echo "          <div class='input-div'><span id='edit-entity-owner-label'>Owner: </span><input id='edit-entity-owner' name='owner' type='text' value=''></div>";
         echo "          <div class='input-div'><span class='edit-entity-last-edited'>Last edited: <b>2021-09-04 13:40:01</b></span></div>";
         echo "          </br></br>";
-        echo "          <p id='edit-entity-description-label'>Description:</p><input id='edit-entity-description' name='description' type='text' value=''>";
+        echo "          <p id='edit-entity-description-label'>Description:</p><textarea id='edit-entity-description' name='description' type='text'></textarea>";
         echo "      </form>";
         echo "  </div>";
         echo "  <div id='edit-entity-relations-container' class='flex-vmax'>";
