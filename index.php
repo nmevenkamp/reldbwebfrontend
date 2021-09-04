@@ -39,15 +39,20 @@ $_SESSION["entity_singulars"] = [
 </head>
 
 <body onload="onload()">
-  <div id="entity-cols" data-disabled=0>
+  <div id="entity-cols" data-disabled=0 class="entity-cols">
     <?php
+    $i = 0;
     foreach ($_SESSION["entities"] as $entity) {
-      echo "<div id='" . $entity . ".column' class='entity-col'>";
+      echo "<div id='" . $entity . ".column' class='entity-col";
+      if ($i > 0)
+        echo " sep";
+      echo "'>";
       echo "  <h1 id='" . $entity . ".title' class='entity-title'>" . ucfirst($entity) . "</h1>";
       echo "  <div id='" . $entity . ".filter-search'></div>";
       echo "  <div id='" . $entity . ".filters'></div>";
       echo "  <div id='" . $entity . ".entities'></div>";
       echo "</div>";
+      $i += 1;
     }
     ?>
   </div>

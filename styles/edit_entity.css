@@ -26,6 +26,7 @@
 #edit-entity-container input {
     padding: 2px 4px;
     margin-left: 2px;
+    margin-right: 10px;
 }
 
 #edit-entity-x-button {
@@ -48,7 +49,12 @@
 }
 
 #edit-entity-form-container {
+    margin: 15px 0px;
+}
 
+.input-div {
+    display: inline-block;
+    padding: 10px 0px;
 }
 
 #edit-entity-name {
@@ -62,10 +68,40 @@
 
 #edit-entity-description {
     width: 80%;
+    height: 200px;
+    margin-top: 5px;
 }
 
 #edit-entity-relations-container {
+    position: relative;
+}
 
+#edit-entity-relations-container .entity-col {
+    width: 200px;
+    text-align: center;
+    position: relative;
+    height: 100%;
+}
+#edit-entity-relations-container .entity-title {
+    font-size: 12pt;
+}
+
+#edit-entity-relations-container .sep::after {
+    right: 0;
+    background: linear-gradient(to bottom, var(--color-outline-light), var(--color-background-light));
+}
+
+.relation-search-add-button {
+    text-align: left;
+    width: 100%;
+    font-size: 10pt;
+    border: none;
+    text-decoration: none;
+    border-radius: 0;
+    margin: 0;
+}
+.relation-search-add-button:hover {
+    background-color: var(--color-accept);
 }
 
 #edit-buttons-container {

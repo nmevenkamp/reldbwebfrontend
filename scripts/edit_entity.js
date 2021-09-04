@@ -57,3 +57,60 @@ function deleteEntity(entity, id) {
     alert("Dummy: you sure you wanna delete '" + id + "' from " + entity + "?");
     hideEditEntityDialog();
 }
+
+function showRelationSearch(entity) {
+    div = document.getElementById(entity + ".relation-search.list");
+    div.style.display = "block";
+    entries = div.getElementsByClassName("filter-search-entry");
+    for (entry of entries) {
+        if (entry.getAttribute("data-active") == 1)
+            continue;
+        entry.style.display = "block";
+    }
+    updateRelationSearch(entity);
+}
+
+function hideRelationSearch(entity) {
+    div = document.getElementById(entity + ".relation-search.list");
+    div.style.display = "none";
+    entries = div.getElementsByClassName("filter-search-entry");
+    for (entry of entries) {
+        entry.style.display = "none";
+    }
+}
+
+function updateRelationSearch(entity) {
+    input = document.getElementById(entity + ".relation-search.input");
+    relation = input.value.toUpperCase();
+    div = document.getElementById(entity + ".relation-search.list");
+    entries = div.getElementsByClassName("filter-search-entry");
+    has_entries = false;
+    for (entry of entries) {
+        if (entry.getAttribute("data-active") == 1)
+            continue;
+        relation_button = entry.getElementsByClassName("relation-search-add-button")[0];
+        txtValue = (relation_button.getAttribute("data-name")).toUpperCase();
+        if (txtValue.indexOf(relation) > -1) {
+            entry.style.display = "block";
+            has_entries = true;
+        } else {
+            entry.style.display = "none";
+        }
+    }
+    if (has_entries)
+        div.style.display = "block";
+    else
+        div.style.display = "none";
+}
+
+function addRelation(relation_id) {
+    document.getElementById("relation-search." + relation_id).setAttribute("data-active", 1);
+    document.getElementById("relations." + relation_id).setAttribute("data-active", 1);
+    toggleFiltersListVisibility();
+}
+
+function removeFilter(relation_id) {
+    document.getElementById("relation-search." + relation_id).setAttribute("data-active", 0);
+    document.getElementById("relations." + relation_id).setAttribute("data-active", 0);
+    toggleFiltersListVisibility();
+}

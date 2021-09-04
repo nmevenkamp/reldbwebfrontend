@@ -53,13 +53,13 @@ button {
     padding-right: @entity-col-padding;
 }
 
-.entity-col::after {
+.sep::after {
     display: inline-block;
     content: "";
     background-color: var(--color-outline-light);
     width: 1px;
     height: 100%;
-    position: fixed;
+    position: absolute;
     top: 0px;
     margin-left: -@entity-col-padding;
 }
