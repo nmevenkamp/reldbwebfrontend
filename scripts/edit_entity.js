@@ -38,6 +38,8 @@ function cancelEditEntity() {
 }
 
 function acceptEditEntity(entity, id) {
+    // TODO: check and send relations for update in addition to form data
+
     // build form data
     var form = document.forms.namedItem("edit-entity-form");
     form_data = new FormData(form);

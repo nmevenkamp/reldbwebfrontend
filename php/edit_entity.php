@@ -30,6 +30,7 @@ session_start();
             $ok_button_text = "Ok";
             break;
         case "update":
+            // TOOD: get and update relations
             $id = $_GET['id'];
             if ($log) {
                 file_put_contents('../log.txt', date("Y-m-d:H:i:s") . ": begin POST:" . PHP_EOL, FILE_APPEND);
@@ -81,6 +82,10 @@ session_start();
             echo "                  <input id='" . $entity . ".relation-search.input' type='text' placeholder='add " . $entity . "..' onfocus='showRelationSearch(\"" . $entity . "\")' onfocusout='hideRelationSearch(\"" . $entity . "\")' onkeyup='updateRelationSearch(\"" . $entity . "\")'>";
             echo "              </div>";
             echo "              <div id='" . $entity . ".relation-search.list' class='relation-search-list'>";
+
+            # TODO: check which relations actually exist and
+            #           activate corresponding relation rows
+            #           deactivate corresponding relation search entries
 
             $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
             $result = $db->query($sql);
