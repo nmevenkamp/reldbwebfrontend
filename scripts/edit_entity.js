@@ -25,12 +25,12 @@ function editEntity(entity, id) {
 
 function showEditEntityDialog() {
     document.getElementById("edit-entity-dialog").style.display = "block";
-    document.getElementById("entity-cols").setAttribute("data-disabled", 1);
+    document.getElementById("index-entity-cols").setAttribute("data-disabled", 1);
 }
 
 function hideEditEntityDialog() {
     document.getElementById("edit-entity-dialog").style.display = "none";
-    document.getElementById("entity-cols").setAttribute("data-disabled", 0);
+    document.getElementById("index-entity-cols").setAttribute("data-disabled", 0);
 }
 
 function cancelEditEntity() {
@@ -61,7 +61,7 @@ function deleteEntity(entity, id) {
 function showRelationSearch(entity) {
     div = document.getElementById(entity + ".relation-search.list");
     div.style.display = "block";
-    entries = div.getElementsByClassName("filter-search-entry");
+    entries = div.getElementsByClassName("relation-search-entry");
     for (entry of entries) {
         if (entry.getAttribute("data-active") == 1)
             continue;
@@ -73,7 +73,7 @@ function showRelationSearch(entity) {
 function hideRelationSearch(entity) {
     div = document.getElementById(entity + ".relation-search.list");
     div.style.display = "none";
-    entries = div.getElementsByClassName("filter-search-entry");
+    entries = div.getElementsByClassName("relation-search-entry");
     for (entry of entries) {
         entry.style.display = "none";
     }
@@ -83,7 +83,7 @@ function updateRelationSearch(entity) {
     input = document.getElementById(entity + ".relation-search.input");
     relation = input.value.toUpperCase();
     div = document.getElementById(entity + ".relation-search.list");
-    entries = div.getElementsByClassName("filter-search-entry");
+    entries = div.getElementsByClassName("relation-search-entry");
     has_entries = false;
     for (entry of entries) {
         if (entry.getAttribute("data-active") == 1)
@@ -106,11 +106,9 @@ function updateRelationSearch(entity) {
 function addRelation(relation_id) {
     document.getElementById("relation-search." + relation_id).setAttribute("data-active", 1);
     document.getElementById("relations." + relation_id).setAttribute("data-active", 1);
-    toggleFiltersListVisibility();
 }
 
-function removeFilter(relation_id) {
+function removeRelation(relation_id) {
     document.getElementById("relation-search." + relation_id).setAttribute("data-active", 0);
     document.getElementById("relations." + relation_id).setAttribute("data-active", 0);
-    toggleFiltersListVisibility();
 }

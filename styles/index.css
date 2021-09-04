@@ -6,6 +6,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 12pt;
     color: var(--color-font-medium);
+    box-sizing: border-box;
 }
 
 .box {
@@ -13,14 +14,14 @@
     flex-flow: column;
     height: 100%;
 }
-.box .header {
+.box .flex-vmin {
     flex: 0 1 auto;
 }
-.box .content {
+.box .flex-vmax {
     flex: 1 1 auto;
-}
-.box .footer {
-    flex: 0 1 40px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 button {
@@ -30,7 +31,7 @@ button {
     border: 1px solid var(--color-outline-dark);
 }
 
-#entity-cols {
+.entity-cols {
     display: flex;
     height: 100%;
     width: 100%;
@@ -44,24 +45,16 @@ button {
 @entity-col-padding: 25px;
 
 .entity-col {
-    display: inline-block;
-    *display: block;
-    zoom: 1;
-    vertical-align: top;
     width: 300px;
     padding-left: @entity-col-padding;
     padding-right: @entity-col-padding;
 }
 
-.sep::after {
-    display: inline-block;
+.sep {
     content: "";
-    background-color: var(--color-outline-light);
+    background: linear-gradient(to bottom,white, white 25px, var(--color-outline-light) 100px, white 95%);
     width: 1px;
     height: 100%;
-    position: absolute;
-    top: 0px;
-    margin-left: -@entity-col-padding;
 }
 
 .entity-title {

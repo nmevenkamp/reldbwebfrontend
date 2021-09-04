@@ -39,20 +39,18 @@ $_SESSION["entity_singulars"] = [
 </head>
 
 <body onload="onload()">
-  <div id="entity-cols" data-disabled=0 class="entity-cols">
+  <div id="index-entity-cols" data-disabled=0 class="entity-cols">
     <?php
-    $i = 0;
-    foreach ($_SESSION["entities"] as $entity) {
-      echo "<div id='" . $entity . ".column' class='entity-col";
-      if ($i > 0)
-        echo " sep";
-      echo "'>";
+    $entities = $_SESSION["entities"];
+    foreach (array_values($entities) as $idx => $entity) {
+      echo "<div id='" . $entity . ".column' class='entity-col box'>";
       echo "  <h1 id='" . $entity . ".title' class='entity-title'>" . ucfirst($entity) . "</h1>";
-      echo "  <div id='" . $entity . ".filter-search'></div>";
-      echo "  <div id='" . $entity . ".filters'></div>";
-      echo "  <div id='" . $entity . ".entities'></div>";
+      echo "  <div id='" . $entity . ".filter-search' class='flex-vmin'></div>";
+      echo "  <div id='" . $entity . ".filters' class='flex-vmin'></div>";
+      echo "  <div id='" . $entity . ".entities' class='flex-vmax'></div>";
       echo "</div>";
-      $i += 1;
+      if ($idx < count($entities) - 1)
+        echo "<div class='sep'></div>";
     }
     ?>
   </div>

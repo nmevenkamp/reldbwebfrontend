@@ -61,7 +61,7 @@ session_start();
     if ($action == "new" || $action == "edit") {
         echo "<div id='edit-entity-container' class='box'>";
         echo "  <button id='edit-entity-x-button' onclick='cancelEditEntity()'>x</button>";
-        echo "  <div id='edit-entity-form-container' class='header'>";
+        echo "  <div id='edit-entity-form-container' class='flex-vmin'>";
         echo "      <h1>" . ucfirst($entity_s) . "</h1></br>";
         echo "      <form name='edit-entity-form'>";
         echo "          <div class='input-div'><span id='edit-entity-name-label'>Title: </span><input id='edit-entity-name' name='name' type='text' value='" . $name . "'></div>";
@@ -71,36 +71,45 @@ session_start();
         echo "          <p id='edit-entity-description-label'>Description:</p><input id='edit-entity-description' name='description' type='text' value=''>";
         echo "      </form>";
         echo "  </div>";
-        echo "  <div id='edit-entity-relations-container' class='content'>";
+        echo "  <div id='edit-entity-relations-container' class='flex-vmax'>";
         echo "      <div class='entity-cols'>";
         foreach (array_values($entities) as $idx => $entity) {
-            echo "      <div class='entity-col";
-            if ($idx < count($entities) - 1)
-                echo " sep";
-            echo "'>";
+            echo "      <div class='entity-col box'>";
             echo "          <span class='entity-title'>Related " . $entity . "</span>";
-            echo "          <div id='" . $entity . ".relation-search.dropdown' class='filter-search-dropdown'>";
-            echo "              <div class='filter-search-input-container'>";
+            echo "          <div id='" . $entity . ".relation-search.dropdown' class='relation-search-dropdown flex-vmin'>";
+            echo "              <div class='relation-search-input-container'>";
             echo "                  <input id='" . $entity . ".relation-search.input' type='text' placeholder='add " . $entity . "..' onfocus='showRelationSearch(\"" . $entity . "\")' onfocusout='hideRelationSearch(\"" . $entity . "\")' onkeyup='updateRelationSearch(\"" . $entity . "\")'>";
             echo "              </div>";
-            echo "              <div id='" . $entity . ".relation-search.list' class='filter-search-list'>";
+            echo "              <div id='" . $entity . ".relation-search.list' class='relation-search-list'>";
 
             $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
             $result = $db->query($sql);
             foreach ($result as $row) {
                 $relation_id = $entity . "." . $row["id"];
-                echo "              <div id='relation-search." . $relation_id . "' class='filter-search-entry' data-active=0>";
+                echo "              <div id='relation-search." . $relation_id . "' class='relation-search-entry' data-active=0>";
                 echo "                  <button class='relation-search-add-button' data-name='" . $row["name"] . "' onmousedown='addRelation(\"" . $relation_id . "\")'>" . $row["name"] . "</button>";
                 echo "              </div>";
             }
             echo "              </div>";
             echo "          </div>";
-            // echo "      <div id='" . $entity . ".relations'></div>";
+
+            $sql = "SELECT * FROM " . $entity . " ORDER BY name ASC";
+            $result = $db->query($sql);
+            echo "          <div id='" . $entity . ".relations.list' class='relations-list flex-vmax'>";
+            echo "              <table>";
+            foreach ($result as $row) {
+                $relation_id = $entity . "." . $row["id"];
+                echo "              <tr id='relations." . $relation_id . "' data-active=1><td><button onclick='removeRelation(\"" . $relation_id . "\")'>" . $row["name"] . "</button></td></tr>";
+            }
+            echo "              </table>";
+            echo "          </div>";
             echo "      </div>";
+            if ($idx < count($entities) - 1)
+                echo "<div class='sep'></div>";
         }
         echo "      </div>";
         echo "  </div>";
-        echo "  <div id='edit-buttons-container' class='footer'>";
+        echo "  <div id='edit-buttons-container' class='flex-vmin'>";
         echo "      <button id='edit-entity-delete-button' onclick='deleteEntity(\"" . $entity . "\",\"" . $id . "\")'>Delete " . $entity_s . "</button>";
         echo "      <button id='edit-entity-cancel-button' onclick='cancelEditEntity()'>Cancel</button>";
         echo "      <button id='edit-entity-ok-button' onclick='acceptEditEntity(\"" . $entity . "\",\"" . $id . "\")'>" . $ok_button_text . "</button>";

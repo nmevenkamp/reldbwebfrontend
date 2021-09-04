@@ -52,11 +52,11 @@ session_start();
     $result = $db->query($sql);
 
     echo "<div id='" . $entity . ".entities.list' class='entities-list'>";
-    echo "<table>";
+    echo "  <table>";
     foreach ($result as $row) {
-        echo    "<tr><td><button onclick='editEntity(\"" . $entity . "\",\"" . $row["id"] . "\")'>" . $row["name"] . "</button></td></tr>";
+        echo "  <tr><td><button onclick='editEntity(\"" . $entity . "\",\"" . $row["id"] . "\")'>" . $row["name"] . "</button></td></tr>";
     }
-    echo "</table>";
+    echo "  </table>";
     echo "</div>";
     ?>
 </body>
