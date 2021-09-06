@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="scripts/sqlite.js"></script>
+    <script type="text/javascript">
+        sqlite = new SQLite("data/my_db.db");
+
+        function onload() {
+            query_str = "SELECT name FROM projects";
+            response_callback = function (result) {
+                alert(JSON.stringify(result, null, "  "));
+            };
+
+            arr = sqlite.query(query_str, response_callback);
+        }
+    </script>
+</head>
+
+<body onload="onload()">
+    <span>Hello, world!</span>
+</body>
+
+</html>

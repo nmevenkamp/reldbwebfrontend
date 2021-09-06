@@ -48,14 +48,12 @@
 .filter-search-entry {
     display: none;
     color: var(--color-font-dark);
-    text-decoration: none;
     position: relative;
     width: 100%;
 }
 
 .filter-search-entry button {
     border: none;
-    text-decoration: none;
     background: none;
 }
 
