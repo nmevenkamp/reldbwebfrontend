@@ -10,8 +10,7 @@
             response_callback = function (result) {
                 alert(JSON.stringify(result, null, "  "));
             };
-
-            arr = sqlite.query(query_str, response_callback);
+            sqlite.query(query_str, response_callback);
         }
     </script>
 </head>
