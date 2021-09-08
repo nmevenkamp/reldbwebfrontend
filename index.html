@@ -1,22 +1,43 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+    <link rel="stylesheet/less" href="styles/html.css">
     <script type="text/javascript" src="scripts/sqlite.js"></script>
+    <script type="text/javascript" src="scripts/html.js"></script> 
     <script type="text/javascript">
-        sqlite = new SQLite("data/my_db.db");
+        window.onerror = function (msg, url, num) {
+            alert("Error: " + msg + "\nURL: " + url + "\nLine: " + num);
+            return true;
+        };
 
         function onload() {
+            sqlite = new SQLite("data/my_db.db");
+
+            entities = [];
+            relations = [];
+            entity_types = ["project", "technology"]; // TODO: auto generate via sqlite query
+
+            table_div = new Div(
+                "table",
+                [
+                    new EntitiesTable()
+                ]
+            );
+
+            cm = new ContextManager([
+                table_div
+            ]);
+
+            // fetch entities
             query_str = "SELECT name FROM projects";
-            response_callback = function (result) {
-                alert(JSON.stringify(result, null, "  "));
-            };
-            sqlite.query(query_str, response_callback);
+            sqlite.query(query_str, (result) => cm.updateEntities(result));
         }
     </script>
 </head>
 
 <body onload="onload()">
-    <span>Hello, world!</span>
+    <div id="table"></div>
 </body>
 
 </html>
