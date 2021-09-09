@@ -12,7 +12,7 @@
         };
 
         function onload() {
-            sqlite = new SQLite("data/my_db.db");
+            sqlite = new SQLite("data/sqlite.db");
 
             entities = [];
             relations = [];
@@ -21,7 +21,7 @@
             table_div = new Div(
                 "table",
                 [
-                    new EntitiesTable()
+                    new EntitiesSearch((entity) => entity["type"] == "project", "filter projects..")
                 ]
             );
 
@@ -30,7 +30,7 @@
             ]);
 
             // fetch entities
-            query_str = "SELECT name FROM projects";
+            query_str = "SELECT * FROM entities";
             sqlite.query(query_str, (result) => cm.updateEntities(result));
         }
     </script>
