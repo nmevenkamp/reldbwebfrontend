@@ -34,8 +34,8 @@ class Div {
         this.div.innerHTML = html;
 
         for (let object of this.objects) {
-            if (typeof object.addFunctions === 'function')
-                object.addFunctions();
+            if (typeof object.init === 'function')
+                object.init();
         }
     }
 }
@@ -49,7 +49,7 @@ function getHTMLAttrStr(htmlAttrs) {
         return "";
 
     let res = "";
-    for (const [key, value] of Object.entries(this.htmlAttrs)) {
+    for (const [key, value] of Object.entries(htmlAttrs)) {
         if (value != null)
             res += " " + key + "='" + value + "'";
     }
@@ -57,7 +57,7 @@ function getHTMLAttrStr(htmlAttrs) {
 }
 
 class EntitiesTable {
-    constructor(cols=["name"], filterFunc=null) {
+    constructor(cols = ["name"], filterFunc = null) {
         this.cols = cols;
         this.filterFunc = filterFunc;
     }
@@ -66,7 +66,10 @@ class EntitiesTable {
         let entitiesFiltered = [];
         for (const entity of entities) {
             if (this.filterFunc == null || this.filterFunc(entity)) {
-                let row = {"entityId": entity["id"], "entityName": entity["name"]};
+                let row = {
+                    "entityId": entity["id"],
+                    "entityName": entity["name"]
+                };
                 for (const col of this.cols)
                     row[col] = entity[col];
                 entitiesFiltered.push(row);
@@ -77,7 +80,7 @@ class EntitiesTable {
 }
 
 class EntitiesSearch {
-    constructor(filterFunc=null, placeholder=null, ) {
+    constructor(filterFunc = null, placeholder = null, ) {
         this.filterFunc = filterFunc;
         this.placeholder = placeholder;
 
@@ -85,13 +88,23 @@ class EntitiesSearch {
 
         this.activeSet = [];
     }
-    
+
     get html() {
-        let html = "<div" + getHTMLAttrStr({"id": this.divId}) + ">";
-        html += "<input" + getHTMLAttrStr({"data-id": "input", "type": "text", "placeholder": this.placeholder}) + ">";
+        let html = "<div" + getHTMLAttrStr({
+            "id": this.divId
+        }) + ">";
+        html += "<div>";
+        html += "<input" + getHTMLAttrStr({
+            "data-id": "input",
+            "type": "text",
+            "placeholder": this.placeholder
+        }) + ">";
         html += "</div>";
-        html += "<div" + getHTMLAttrStr({"data-id": "search-list"}) + ">";
+        html += "<div" + getHTMLAttrStr({
+            "data-id": "searchList"
+        }) + ">";
         html += new EntitiesTable(["name"], this.filterFunc).html;
+        html += "</div>";
         html += "</div>";
         return html;
     }
@@ -108,37 +121,39 @@ class EntitiesSearch {
         return this.div.querySelector("[data-id='searchList']");
     }
 
-    addFunctions() {
-        this.input.ondocus = () => this.show();
-        this.input.onfocusout = () => this.hide();
-        this.input.onkeyup = () => this.update();
+    init() {
+        this.hide();
+
+        this.input.addEventListener("focusin", () => this.show());
+        this.input.addEventListener("focusout", () => this.hide());
+        this.input.addEventListener("keyup", () => this.update());
     }
 
     show() {
         this.searchList.style.display = "block";
     }
 
-    hide () {
+    hide() {
         this.searchList.style.display = "none";
     }
 
-    update () {
+    update() {
         const inputStr = this.input.value.toUpperCase();
         let rows = this.searchList.getElementsByTagName("tr");
-        hasEntries = false;
-        matchedEntry = false;
+        let hasEntries = false;
+        let matchedEntry = false;
         for (let row of rows) {
-            entityId = row.getAttribute("data-entityId");
+            let entityId = row.getAttribute("data-entityId");
             if (this.activeSet.includes(entityId))
                 continue;
-            entityName = row.getAttribute("data-entityName");
+            let entityName = row.getAttribute("data-entityName").toUpperCase();
             if (entityName.indexOf(inputStr) > -1) {
                 row.style.display = "block";
                 hasEntries = true;
             } else
                 row.style.display = "none";
             if (entityName == inputStr)
-            matchedEntry = true;
+                matchedEntry = true;
         }
         if (hasEntries)
             this.show();
@@ -180,7 +195,7 @@ class MultiButton {
 }
 
 class Table {
-    constructor(table, dataAttrKeys=null) {
+    constructor(table, dataAttrKeys = null) {
         this.table = table;
         this.dataAttrKeys = dataAttrKeys;
     }
