@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    color: var(--color-font-medium);
+    box-sizing: border-box;
+}
+
 .invisible {
     pointer-events: none;
     opacity: 0;
@@ -8,4 +19,49 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.columns {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-flow: column;
+}
+
+.column .flex-vmin {
+    flex: 0 1 auto;
+}
+.column .flex-vmax {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sep {
+    content: "";
+    background: linear-gradient(to bottom,white, white 25px, var(--color-outline-light) 100px, white 95%);
+    width: 1px;
+    height: 100%;
+}
+
+#entitiesExplorer {
+    height: 100%;
+}
+
+#entitiesExplorer .columns {
+    width: 100%;
+}
+
+#entitiesExplorer .column {
+    width: 300px;
+    padding: 0px 25px;
+}
+
+#entitiesExplorer h1 {
+    text-align: center;
+    padding: 12px;
+    font-size: 16pt;
+    color: var(--color-font-dark);
 }

@@ -56,6 +56,79 @@ function getHTMLAttrStr(htmlAttrs) {
     return res;
 }
 
+class EntitiesExplorer  {
+    constructor() {
+        let cols = [];
+        for (let entityType of entityTypes) {
+            cols.push(new EntitiesColumn(entityType));
+        }
+        this.colDivs = new ColumnDivs(cols);
+    }
+
+    get html() {
+        return this.colDivs.html;
+    }
+
+    init() {
+        this.colDivs.init();
+    }
+}
+
+class EntitiesColumn {
+    constructor(entityType) {
+        this.entityType = entityType;
+
+        function filterFunc(entity) {
+            return entity["type"] == entityType;
+        }
+
+        this.search = new EntitiesSearch(filterFunc, "filter " + entityTypePlurals[this.entityType] + "..");
+        this.filters = new EntitiesTable(["name"], filterFunc);
+        this.entities = new EntitiesTable(["name"], filterFunc);
+    }
+
+    get html() {
+        let html = "<div>";
+        html += "<h1>" + capitalizeFirstLetter(entityTypePlurals[this.entityType]) + "</h1>";
+        html += this.search.html;
+        html += this.filters.html;
+        html += this.entities.html;
+        html += "</div>";
+        return html;
+    }
+
+    init() {
+        this.search.init();
+    }
+}
+
+class ColumnDivs {
+    constructor(cols, addSeparators = true) {
+        this.cols = cols;
+        this.addSeparators = addSeparators;
+    }
+
+    get html() {
+        let html = "<div class='columns'>";
+        for (let [index, col] of this.cols.entries()) {
+            if (index > 0 && this.addSeparators)
+                html += "<div class='sep'></div>";
+            html += "<div class='column'>";
+            html += col.html;
+            html += "</div>";
+        }
+        html += "</div>";
+        return html;
+    }
+
+    init() {
+        for (let col of this.cols) {
+            if (typeof col.init === 'function')
+                col.init();
+        }
+    }
+}
+
 class EntitiesTable {
     constructor(cols = ["name"], filterFunc = null) {
         this.cols = cols;
@@ -80,7 +153,7 @@ class EntitiesTable {
 }
 
 class EntitiesSearch {
-    constructor(filterFunc = null, placeholder = null, ) {
+    constructor(filterFunc = null, placeholder = null) {
         this.filterFunc = filterFunc;
         this.placeholder = placeholder;
 
@@ -191,6 +264,7 @@ class MultiButton {
         html += "<p class='invisible'>" + this.text + "</p>";
         html += "<p class='overlay'>" + this.text + "</p>";
         html += "</div>";
+        return html;
     }
 }
 

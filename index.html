@@ -3,8 +3,10 @@
 
 <head>
     <link rel="stylesheet/less" href="styles/html.css">
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
     <script type="text/javascript" src="scripts/sqlite.js"></script>
-    <script type="text/javascript" src="scripts/html.js"></script> 
+    <script type="text/javascript" src="scripts/html.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
     <script type="text/javascript">
         window.onerror = function (msg, url, num) {
             alert("Error: " + msg + "\nURL: " + url + "\nLine: " + num);
@@ -16,17 +18,19 @@
 
             entities = [];
             relations = [];
-            entity_types = ["project", "technology"]; // TODO: auto generate via sqlite query
+            entityTypes = ["project", "technology"]; // TODO: auto generate via sqlite query
+            entityTypePlurals = {
+                "project": "projects",
+                "technology": "technologies"
+            };
 
-            table_div = new Div(
-                "table",
-                [
-                    new EntitiesSearch((entity) => entity["type"] == "project", "filter projects..")
-                ]
+            entitiesExplorer = new Div(
+                "entitiesExplorer",
+                [new EntitiesExplorer()]
             );
 
             cm = new ContextManager([
-                table_div
+                entitiesExplorer
             ]);
 
             // fetch entities
@@ -37,7 +41,7 @@
 </head>
 
 <body onload="onload()">
-    <div id="table"></div>
+    <div id="entitiesExplorer"></div>
 </body>
 
 </html>
