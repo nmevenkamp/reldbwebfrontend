@@ -66,7 +66,10 @@ class EntitiesExplorer  {
     }
 
     get html() {
-        return this.colDivs.html;
+        let html = "<div class='entitiesExplorer'>";
+        html += this.colDivs.html;
+        html += "</div>";
+        return html;
     }
 
     init() {
@@ -83,12 +86,12 @@ class EntitiesColumn {
         }
 
         this.search = new EntitiesSearch(filterFunc, "filter " + entityTypePlurals[this.entityType] + "..");
-        this.filters = new EntitiesTable(["name"], filterFunc);
-        this.entities = new EntitiesTable(["name"], filterFunc);
+        this.filters = new EntitiesTable(["name"], 'filters', filterFunc);
+        this.entities = new EntitiesTable(["name"], 'entities', filterFunc);
     }
 
     get html() {
-        let html = "<div>";
+        let html = "<div class='entitiesColumn'>";
         html += "<h1>" + capitalizeFirstLetter(entityTypePlurals[this.entityType]) + "</h1>";
         html += this.search.html;
         html += this.filters.html;
@@ -130,8 +133,9 @@ class ColumnDivs {
 }
 
 class EntitiesTable {
-    constructor(cols = ["name"], filterFunc = null) {
+    constructor(cols = ["name"], className = null, filterFunc = null) {
         this.cols = cols;
+        this.className = className;
         this.filterFunc = filterFunc;
     }
 
@@ -148,7 +152,7 @@ class EntitiesTable {
                 entitiesFiltered.push(row);
             }
         }
-        return new Table(entitiesFiltered, ["entityId", "entityName"]).html;
+        return new Table(entitiesFiltered, this.className, ["entityId", "entityName"]).html;
     }
 }
 
@@ -164,7 +168,8 @@ class EntitiesSearch {
 
     get html() {
         let html = "<div" + getHTMLAttrStr({
-            "id": this.divId
+            "id": this.divId,
+            "class": 'entitiesSearch'
         }) + ">";
         html += "<div>";
         html += "<input" + getHTMLAttrStr({
@@ -176,7 +181,7 @@ class EntitiesSearch {
         html += "<div" + getHTMLAttrStr({
             "data-id": "searchList"
         }) + ">";
-        html += new EntitiesTable(["name"], this.filterFunc).html;
+        html += new EntitiesTable(["name"], 'searchItems', this.filterFunc).html;
         html += "</div>";
         html += "</div>";
         return html;
@@ -269,13 +274,17 @@ class MultiButton {
 }
 
 class Table {
-    constructor(table, dataAttrKeys = null) {
+    constructor(table, className = null, dataAttrKeys = null) {
         this.table = table;
+        this.className = className;
         this.dataAttrKeys = dataAttrKeys;
     }
 
     get html() {
-        let html = "<table>";
+        let html = "<table";
+        if (this.className != null)
+            html += " class='" + this.className + "'";
+        html += ">";
         for (let row of this.table) {
             html += "<tr";
             if (this.dataAttrKeys != null) {
