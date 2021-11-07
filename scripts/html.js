@@ -85,9 +85,27 @@ class EntitiesColumn {
             return entity["type"] == entityType;
         }
 
-        this.search = new EntitiesSearch(filterFunc, "filter " + entityTypePlurals[this.entityType] + "..");
-        this.filters = new EntitiesTable(["name"], 'filters', filterFunc);
-        this.entities = new EntitiesTable(["name"], 'entities', filterFunc);
+        function entitiesSearchColGenerator(col, entity) {
+            return new MultiButton(
+                entity[col],
+                [
+                    new Button("and", {"class": "addAndFilterButton"}),
+                    new Button("or", {"class": "addOrFilterButton"})
+                ],
+                {"class": "addFilterMultiButton"}
+            ).html;
+        }
+
+        this.search = new EntitiesSearch(
+            filterFunc,
+            "filter " + entityTypePlurals[this.entityType] + "..",
+            entitiesSearchColGenerator
+        );
+
+
+
+        this.filters = new EntitiesTable(["name"], {"class": "filters"}, filterFunc);
+        this.entities = new EntitiesTable(["name"], {"class": "entities"}, filterFunc);
     }
 
     get html() {
@@ -133,10 +151,11 @@ class ColumnDivs {
 }
 
 class EntitiesTable {
-    constructor(cols = ["name"], className = null, filterFunc = null) {
+    constructor(cols = ["name"], htmlAttrs = null, filterFunc = null, colGenerator = null) {
         this.cols = cols;
-        this.className = className;
+        this.htmlAttrs = htmlAttrs;
         this.filterFunc = filterFunc;
+        this.colGenerator = colGenerator;
     }
 
     get html() {
@@ -147,18 +166,23 @@ class EntitiesTable {
                     "entityId": entity["id"],
                     "entityName": entity["name"]
                 };
-                for (const col of this.cols)
-                    row[col] = entity[col];
+                for (const col of this.cols) {
+                    if (this.colGenerator == null)
+                        row[col] = entity[col];
+                    else
+                        row[col] = this.colGenerator(col, entity);
+                }
                 entitiesFiltered.push(row);
             }
         }
-        return new Table(entitiesFiltered, this.className, ["entityId", "entityName"]).html;
+        return new Table(entitiesFiltered, this.htmlAttrs, ["entityId", "entityName"]).html;
     }
 }
 
 class EntitiesSearch {
-    constructor(filterFunc = null, placeholder = null) {
+    constructor(filterFunc = null, placeholder = null, colGenerator = null) {
         this.filterFunc = filterFunc;
+        this.colGenerator = colGenerator;
         this.placeholder = placeholder;
 
         this.divId = uuid();
@@ -181,7 +205,9 @@ class EntitiesSearch {
         html += "<div" + getHTMLAttrStr({
             "data-id": "searchList"
         }) + ">";
-        html += new EntitiesTable(["name"], 'searchItems', this.filterFunc).html;
+
+        html += new EntitiesTable(["name"], {"class": "searchItems"}, this.filterFunc, this.colGenerator).html;
+
         html += "</div>";
         html += "</div>";
         return html;
@@ -252,18 +278,19 @@ class Button {
     }
 
     get html() {
-        return "<button" + getHTMLAttrStr(this.htmlAttrs) + "><p>" + text + "</p><button>";
+        return "<button" + getHTMLAttrStr(this.htmlAttrs) + "><p>" + this.text + "</p></button>";
     }
 }
 
 class MultiButton {
-    constructor(text, buttons) {
+    constructor(text, buttons, htmlAttrs = null) {
         this.text = text;
         this.buttons = buttons;
+        this.htmlAttrs = htmlAttrs;
     }
 
     get html() {
-        let html = "<div>";
+        let html = "<div" + getHTMLAttrStr(this.htmlAttrs) + ">";
         for (let button of this.buttons)
             html += button.html;
         html += "<p class='invisible'>" + this.text + "</p>";
@@ -274,17 +301,14 @@ class MultiButton {
 }
 
 class Table {
-    constructor(table, className = null, dataAttrKeys = null) {
+    constructor(table, htmlAttrs = null, dataAttrKeys = null) {
         this.table = table;
-        this.className = className;
+        this.htmlAttrs = htmlAttrs;
         this.dataAttrKeys = dataAttrKeys;
     }
 
     get html() {
-        let html = "<table";
-        if (this.className != null)
-            html += " class='" + this.className + "'";
-        html += ">";
+        let html = "<table" + getHTMLAttrStr(this.htmlAttrs) + ">";
         for (let row of this.table) {
             html += "<tr";
             if (this.dataAttrKeys != null) {
